@@ -180,8 +180,8 @@
 			children = (
 				0BFBEB2825DCA4500026CEC8 /* AuthViewController.swift */,
 				0BFBEB2C25DCA46A0026CEC8 /* WelcomeViewController.swift */,
-				0BFBEB2F25DCA4760026CEC8 /* SettingsViewController.swift */,
 				0BFBEB3225DCA4910026CEC8 /* ProfileViewController.swift */,
+				0BFBEB2F25DCA4760026CEC8 /* SettingsViewController.swift */,
 				0BFBEB3525DCA4B70026CEC8 /* PlayerViewController.swift */,
 				0BFBEB3825DCA4D00026CEC8 /* PlaylistViewController.swift */,
 				0BFBEB3B25DCA4F90026CEC8 /* SearchResultsViewController.swift */,
