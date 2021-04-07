@@ -40,6 +40,26 @@ final  class APICaller {
             task.resume()
         }
     }
+    
+    public func getNewReleases(completion:@escaping((Result<NewRealeasesResponse,Error>))->Void) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "/browse/new-releases?limit=2"), type: .GET) { request in
+            let task  = URLSession.shared.dataTask(with: request) { data,_,error in
+                guard let data = data ,error == nil else {
+                    completion(.failure(APIERROR.failedToGetData))
+                    return
+                }
+                do {
+                    let  result = try JSONDecoder().decode(NewRealeasesResponse.self, from: data)
+                    
+                    completion(.success(result))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+            task.resume()
+        }
+    }
     //MARK: Private
     enum HTTPMethod:String {
         case GET
