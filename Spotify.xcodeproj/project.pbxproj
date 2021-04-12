@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B16B7A62623BF8100CED0B9 /* RecommentationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B16B7A52623BF8100CED0B9 /* RecommentationResponse.swift */; };
 		0B21816125EDCD6800F50C08 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21816025EDCD6800F50C08 /* SettingsModels.swift */; };
 		0B4B2372261E7BE20002A760 /* FeaturedPlaylistResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4B2371261E7BE20002A760 /* FeaturedPlaylistResponse.swift */; };
 		0B4B237B261FC61F0002A760 /* RecommendedGenresResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4B237A261FC61F0002A760 /* RecommendedGenresResponse.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B16B7A52623BF8100CED0B9 /* RecommentationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommentationResponse.swift; sourceTree = "<group>"; };
 		0B21816025EDCD6800F50C08 /* SettingsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		0B4B2371261E7BE20002A760 /* FeaturedPlaylistResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistResponse.swift; sourceTree = "<group>"; };
 		0B4B237A261FC61F0002A760 /* RecommendedGenresResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedGenresResponse.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				0BB5913E261D32E300D95B64 /* APIImage.swift */,
 				0B4B2371261E7BE20002A760 /* FeaturedPlaylistResponse.swift */,
 				0B4B237A261FC61F0002A760 /* RecommendedGenresResponse.swift */,
+				0B16B7A52623BF8100CED0B9 /* RecommentationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				0BFBEB2025DCA3FB0026CEC8 /* SearchViewController.swift in Sources */,
 				0BFBEB5425DDF6A50026CEC8 /* Playlist.swift in Sources */,
 				0BFBEB4B25DDF6420026CEC8 /* AuthManager.swift in Sources */,
+				0B16B7A62623BF8100CED0B9 /* RecommentationResponse.swift in Sources */,
 				0BFBEB5125DDF6800026CEC8 /* HapticManager.swift in Sources */,
 				0B4B2372261E7BE20002A760 /* FeaturedPlaylistResponse.swift in Sources */,
 				0BFBEB3C25DCA4F90026CEC8 /* SearchResultsViewController.swift in Sources */,
