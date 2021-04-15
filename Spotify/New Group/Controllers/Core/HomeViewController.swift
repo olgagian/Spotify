@@ -7,9 +7,9 @@
 
 import UIKit
 enum BrowseSectionType{
-    case newReleases//1
-    case featuredPlaylists//2
-    case  recommendedTracks//3
+    case newReleases(viewModels:[NewReleaseCollectionViewCell])//1
+    case featuredPlaylists(viewModels:[FeaturedPlaylistCollectionViewCell])//2
+    case  recommendedTracks(viewModels:[RecommendedtrackCollectionViewCell])//3
     
 }
 
@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         spinner.hidesWhenStopped = true
         return spinner
     }()
+    private var sections = [BrowseSectionType]()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Browse"
@@ -40,7 +41,11 @@ class HomeViewController: UIViewController {
     }
     private func configureCollectionView() {
         view.addSubview(collectionView)
-        collectionView.register(UICollectionViewCell.self,forCellWithReuseIdentifier: "cell")
+        collectionView.register(NewReleaseCollectionViewCell.self,forCellWithReuseIdentifier: NewReleaseCollectionViewCell.identifier)
+        collectionView.register(FeaturedPlaylistCollectionViewCell.self,forCellWithReuseIdentifier: FeaturedPlaylistCollectionViewCell.identifier)
+
+        collectionView.register(RecommendedtrackCollectionViewCell.self,forCellWithReuseIdentifier: RecommendedtrackCollectionViewCell.identifier)
+
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
@@ -48,9 +53,32 @@ class HomeViewController: UIViewController {
     }
     
     private func fetchData() {
+        let group = DispatchGroup()
+        group.enter()
+        group.enter()
+        group.enter()
+        var newReleases: NewRealeasesResponse?
         //New Releases
-
+        APICaller.shared.getNewReleases { result in
+            defer {
+                group.leave()
+            }
+            switch result {
+            case .success(let model):break
+            case .failure(let error):break
+            }
+        
+        }
         //featured Playlists
+        APICaller.shared.getFeaturedplaylist { result in
+            defer {
+                group.leave()
+            }
+            switch result {
+            case .success(let model):break
+            case .failure(let error):break
+            }
+        }
         //Recommended Tracks
         APICaller.shared.getRecommendedGenres{  result in
             switch result {
@@ -62,13 +90,26 @@ class HomeViewController: UIViewController {
                         seeds.insert(random)
                     }
                 }
-                APICaller.shared.getRecommendations(genres: seeds) { _ in
-                    
+                APICaller.shared.getRecommendations(genres: seeds) { recommendedResult in
+                    defer {
+                        group.leave()
+                    }
+                    switch recommendedResult{
+                    case .success(let model):
+                        break
+                    case .failure(let error):
+                        break
+                    }
                 }
             case .failure(let error):break
             }
         }
-        
+        //Configure Models
+        sections.append(.newReleases(viewModels: []))
+
+        sections.append(.featuredPlaylists(viewModels:[]))
+        sections.append(.recommendedTracks(viewModels:[]))
+
     }
     @objc func didTapSettings(){
         let vc = SettingsViewController()
@@ -84,7 +125,7 @@ extension HomeViewController:UICollectionViewDelegate,UICollectionViewDataSource
         return 5
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return sections.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
